@@ -11,6 +11,8 @@ public interface IPlayController<B extends BaseAlbumItem, M extends BaseMusicIte
 
     void loadAlbum(B musicAlbum);
 
+    void loadAlbum(B musicAlbum, int playIndex);
+
     void playAudio();
 
     void playAudio(int albumIndex);
