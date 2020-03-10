@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Music</string>
+
+    <string name="app_summary">Jetpack MVVM 实践！</string>
+    <string name="Copyright">Product with love by KunMinX @2019</string>
+
 </resources>

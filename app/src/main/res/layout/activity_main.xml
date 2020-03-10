@@ -12,22 +12,26 @@
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/dl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:allowDrawerOpen="@{vm.allowDrawerOpen}"
-        app:isOpenDrawer="@{vm.openDrawer}">
+        android:layout_height="match_parent">
 
-        <androidx.slidingpanelayout.widget.SlidingPaneLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-        </androidx.slidingpanelayout.widget.SlidingPaneLayout>
+        <!--        <androidx.slidingpanelayout.widget.SlidingPaneLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent">-->
+
+        <!--        </androidx.slidingpanelayout.widget.SlidingPaneLayout>-->
 
         <fragment
+            android:id="@+id/drawaer_fragment_host"
             android:name="fragment.NavHostFragment"
             android:layout_width="330dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
-            app:defaultNavHost="true" />
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_drawer" />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
