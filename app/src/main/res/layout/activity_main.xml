@@ -11,18 +11,16 @@
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/dl"
+        allowDrawerOpen="@{vm.allowDrawerOpen}"
+        isOpenDrawer="@{vm.openDrawer}"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <androidx.slidingpanelayout.widget.SlidingPaneLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <!--        <androidx.slidingpanelayout.widget.SlidingPaneLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent">-->
-
-        <!--        </androidx.slidingpanelayout.widget.SlidingPaneLayout>-->
+        </androidx.slidingpanelayout.widget.SlidingPaneLayout>
 
         <fragment
             android:id="@+id/drawaer_fragment_host"
