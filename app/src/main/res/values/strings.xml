@@ -4,4 +4,6 @@
     <string name="app_summary">Jetpack MVVM 实践！</string>
     <string name="Copyright">Product with love by KunMinX @2019</string>
 
+    <string name="recently">最近播放</string>
+    <string name="best_practice">最佳实践</string>
 </resources>

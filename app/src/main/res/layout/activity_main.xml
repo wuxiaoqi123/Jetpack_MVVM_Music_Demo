@@ -20,10 +20,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <fragment
+                android:id="@+id/main_fragment_host"
+                android:name="fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/nav_main" />
+
+
         </androidx.slidingpanelayout.widget.SlidingPaneLayout>
 
         <fragment
-            android:id="@+id/drawaer_fragment_host"
+            android:id="@+id/drawer_fragment_host"
             android:name="fragment.NavHostFragment"
             android:layout_width="330dp"
             android:layout_height="match_parent"
