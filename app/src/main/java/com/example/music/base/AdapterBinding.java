@@ -12,7 +12,10 @@ import android.webkit.WebViewClient;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.BindingAdapter;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager.widget.ViewPager;
 
+import com.example.music.R;
+import com.example.music.ui.adapter.CommonViewPagerAdapter;
 import com.example.music.utils.ClickUtils;
 import com.example.music.utils.Utils;
 import com.google.android.material.tabs.TabLayout;
@@ -47,7 +50,11 @@ public class AdapterBinding {
             for (int i = 0; i < count; i++) {
                 title[i] = tabLayout.getTabAt(i).getText().toString();
             }
-            //TODO
+            ViewPager viewPager = (tabLayout.getRootView()).findViewById(R.id.view_pager);
+            if (viewPager != null) {
+                viewPager.setAdapter(new CommonViewPagerAdapter(count, false, title));
+                tabLayout.setupWithViewPager(viewPager);
+            }
         }
     }
 
