@@ -1,5 +1,6 @@
 package com.example.music.ui.page;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,19 +8,25 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.music.R;
 import com.example.music.base.BaseFragment;
 import com.example.music.bridge.request.MusicRequestViewModel;
 import com.example.music.bridge.state.MainViewModel;
+import com.example.music.data.bean.TestAlbum;
+import com.example.music.databinding.AdapterPlayItemBinding;
 import com.example.music.databinding.FragmentMainBinding;
+import com.example.music.player.PlayerManager;
+import com.example.music.ui.adapter.SimpleBaseBindingAdapter;
 
 public class MainFragment extends BaseFragment {
 
     private FragmentMainBinding mBinding;
     private MainViewModel mMainViewModel;
     private MusicRequestViewModel mMusicRequestViewModel;
-
+    private SimpleBaseBindingAdapter<TestAlbum.TestMusic, AdapterPlayItemBinding> mAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +50,21 @@ public class MainFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         mMainViewModel.initTabAndPage.set(true);
         mMainViewModel.pageAssetPath.set("summary.html");
+        mAdapter = new SimpleBaseBindingAdapter<TestAlbum.TestMusic, AdapterPlayItemBinding>(getContext(), R.layout.adapter_play_item) {
+            @Override
+            protected void onSimpleBindItem(AdapterPlayItemBinding binding, TestAlbum.TestMusic item, RecyclerView.ViewHolder holder) {
+                binding.tvTitle.setText(item.title);
+                binding.tvArtist.setText(item.artist.name);
+                Glide.with(binding.ivCover.getContext()).load(item.coverImg).into(binding.ivCover);
+                int currentIndex = PlayerManager.getInstance().getAlbumIndex();
+                binding.ivPlayStatus.setColor(currentIndex == holder.getAdapterPosition() ?
+                        getResources().getColor(R.color.gray) : Color.TRANSPARENT);
+                binding.getRoot().setOnClickListener(v -> {
+                    PlayerManager.getInstance().playAudio(holder.getAdapterPosition());
+                });
+            }
+        };
+        mBinding.rv.setAdapter(mAdapter);
     }
 
     public class ClickProxy {
