@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -21,6 +20,7 @@ import com.example.music.databinding.AdapterPlayItemBinding;
 import com.example.music.databinding.FragmentMainBinding;
 import com.example.music.player.PlayerManager;
 import com.example.music.ui.adapter.SimpleBaseBindingAdapter;
+import com.example.music.ui.helper.DrawerCoordinateHelper;
 
 public class MainFragment extends BaseFragment {
 
@@ -87,6 +87,9 @@ public class MainFragment extends BaseFragment {
             mAdapter.setList(PlayerManager.getInstance().getAlbum().musics);
             mAdapter.notifyDataSetChanged();
         }
+        DrawerCoordinateHelper.getInstance().openDrawer.observe(getViewLifecycleOwner(), aBoolean -> {
+            mSharedViewModel.openOrCloseDrawer.setValue(true);
+        });
     }
 
     public class ClickProxy {
