@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -65,6 +66,27 @@ public class MainFragment extends BaseFragment {
             }
         };
         mBinding.rv.setAdapter(mAdapter);
+        PlayerManager.getInstance().getChangeMusicLiveData().observe(getViewLifecycleOwner(), changeMusic -> {
+            mAdapter.notifyDataSetChanged();
+        });
+        mMusicRequestViewModel.getFreeMusicsLiveData().observe(getViewLifecycleOwner(), testAlbum -> {
+            if (testAlbum != null && testAlbum.musics != null) {
+                //noinspection unchecked
+                mAdapter.setList(testAlbum.musics);
+                mAdapter.notifyDataSetChanged();
+                if (PlayerManager.getInstance().getAlbum() == null ||
+                        !PlayerManager.getInstance().getAlbum().albumId.equals(testAlbum.albumId)) {
+                    PlayerManager.getInstance().loadAlbum(testAlbum);
+                }
+            }
+        });
+        if (PlayerManager.getInstance().getAlbum() == null) {
+            mMusicRequestViewModel.requestFreeMusics();
+        } else {
+            //noinspection unchecked
+            mAdapter.setList(PlayerManager.getInstance().getAlbum().musics);
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     public class ClickProxy {
