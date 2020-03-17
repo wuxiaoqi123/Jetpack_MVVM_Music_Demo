@@ -98,7 +98,7 @@ public class MainFragment extends BaseFragment {
         }
 
         public void search() {
-//            nav().navigate(R.id.ac);
+            nav().navigate(R.id.action_mainFragment_to_searchFragment);
         }
     }
 }
