@@ -16,9 +16,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.slidingpanelayout.widget.SlidingPaneLayout
+        <com.sothree.slidinguppanel.SlidingUpPanelLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            app:umanoDragView="@+id/slide_fragment_host"
+            app:umanoOverlay="false"
+            app:umanoPanelHeight="@dimen/sliding_up_header"
+            app:umanoShadowHeight="5dp">
 
             <fragment
                 android:id="@+id/main_fragment_host"
@@ -29,8 +34,16 @@
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/nav_main" />
 
+            <fragment
+                android:id="@+id/slide_fragment_host"
+                android:name="fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/nav_slide" />
 
-        </androidx.slidingpanelayout.widget.SlidingPaneLayout>
+        </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
         <fragment
             android:id="@+id/drawer_fragment_host"
