@@ -1,5 +1,7 @@
 package com.example.music.ui.page;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,11 @@ public class SearchFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
     public class ClickProxy {
 
         public void back() {
@@ -43,11 +50,17 @@ public class SearchFragment extends BaseFragment {
         }
 
         public void testNav() {
-
+            String url = "https://xiaozhuanlan.com/topic/5860149732";
+            Uri uri = Uri.parse(url);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         }
 
         public void subscribe() {
-
+            String url = "https://xiaozhuanlan.com/kunminx";
+            Uri uri = Uri.parse(url);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         }
     }
 }
