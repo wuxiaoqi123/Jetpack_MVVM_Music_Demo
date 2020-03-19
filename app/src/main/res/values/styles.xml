@@ -8,4 +8,7 @@
         <item name="colorAccent">@color/transparent</item>
     </style>
 
+    <declare-styleable name="ForegroundImageView">
+        <attr name="android:foreground" />
+    </declare-styleable>
 </resources>
