@@ -11,4 +11,11 @@
     <declare-styleable name="ForegroundImageView">
         <attr name="android:foreground" />
     </declare-styleable>
+
+    <declare-styleable name="PlayPause">
+        <attr name="isCircleDraw" format="boolean" />
+        <attr name="circleAlpha" format="integer" />
+        <attr name="backgroundColor" format="reference|color" />
+        <attr name="drawableColor" format="reference|color" />
+    </declare-styleable>
 </resources>

@@ -2,23 +2,30 @@ package com.example.music.base;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 
 import androidx.core.view.GravityCompat;
 import androidx.databinding.BindingAdapter;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.example.music.R;
 import com.example.music.ui.adapter.CommonViewPagerAdapter;
+import com.example.music.ui.view.PlayPauseView;
 import com.example.music.utils.ClickUtils;
 import com.example.music.utils.Utils;
 import com.google.android.material.tabs.TabLayout;
+
+import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
+import net.steamcrafted.materialiconlib.MaterialIconView;
 
 public class AdapterBinding {
 
@@ -82,5 +89,24 @@ public class AdapterBinding {
         webSettings.setLoadWithOverviewMode(true);
         String url = "file:///android_asset/" + assetPath;
         webView.loadUrl(url);
+    }
+
+    @BindingAdapter(value = {"imageUrl", "placeHolder"}, requireAll = false)
+    public static void loadUrl(ImageView view, String url, Drawable placeHolder) {
+        Glide.with(view.getContext()).load(url).placeholder(placeHolder).into(view);
+    }
+
+    @BindingAdapter(value = {"isPlaying"}, requireAll = false)
+    public static void isPlaying(PlayPauseView pauseView, boolean isPlaying) {
+        if (isPlaying) {
+            pauseView.play();
+        } else {
+            pauseView.pause();
+        }
+    }
+
+    @BindingAdapter(value = {"mdIcon"}, requireAll = false)
+    public static void setIcon(MaterialIconView view, MaterialDrawableBuilder.IconValue iconValue) {
+        view.setIcon(iconValue);
     }
 }
