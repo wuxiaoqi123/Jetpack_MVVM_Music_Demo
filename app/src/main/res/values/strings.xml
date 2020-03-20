@@ -20,4 +20,8 @@
     <string name="learn_more">Learn More</string>
     <string name="search_page_tip">本页面用于测试 Navigation 路由导航</string>
 
+    <string name="play_repeat">列表循环</string>
+    <string name="play_repeat_once">单曲循环</string>
+    <string name="play_shuffle">随机播放</string>
+    <string name="unfinished">这是个前排吃瓜的按钮！ ^_^</string>
 </resources>
