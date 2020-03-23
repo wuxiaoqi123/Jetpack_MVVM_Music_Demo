@@ -12,6 +12,7 @@ public class MainActivity extends BaseActivity {
 
     private ActivityMainBinding mBinding;
     private MainActivityViewModel mMainActivityViewModel;
+    private boolean isListened = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +21,20 @@ public class MainActivity extends BaseActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mBinding.setLifecycleOwner(this);
         mBinding.setVm(mMainActivityViewModel);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (!isListened) {
+            mSharedViewModel.timeToAddSlideListener.setValue(true);
+            isListened = true;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        mSharedViewModel.closeSlidePanelIfExpanded.setValue(true);
     }
 }
